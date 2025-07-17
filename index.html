@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club IA para Estéticas - Tu revolución digital comienza aquí</title>
+    <!-- Se mantiene la fuente Poppins para un aspecto moderno y legible -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Reset de estilos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Variables CSS para colores y gradientes */
+        :root {
+            --primary-magenta: #ff00ff;
+            --primary-cyan: #00ffff;
+            --dark-bg: #0a0a0a;
+            --dark-secondary: #1a1a1a;
+            --dark-tertiary: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --gradient-primary: linear-gradient(135deg, var(--primary-magenta), var(--primary-cyan));
+            --gradient-secondary: linear-gradient(45deg, rgba(255,0,255,0.1), rgba(0,255,255,0.1));
+        }
+
+        /* Estilos generales del cuerpo, se usa la fuente Poppins */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden; /* Evita el scroll horizontal */
+        }
+
+        /* Contenedor principal para centrar el contenido */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ANIMACIONES */
+        /* Clase para elementos que aparecerán con un efecto de fade-in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        /* Estado visible para la animación de fade-in */
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Efecto parallax (no se usa en este código, pero se mantiene la clase) */
+        .parallax {
+            transform: translateY(0);
+            transition: transform 0.1s ease-out;
+        }
+
+        /* BOTONES */
+        /* Estilos para el botón principal */
+        .btn-primary {
+            display: inline-block;
+            padding: 18px 40px;
+            background: var(--gradient-primary);
+            color: var(--dark-bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255,0,255,0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Efecto hover para el botón principal */
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255,0,255,0.5);
+        }
+
+        /* Estilos para el botón secundario */
+        .btn-secondary {
+            display: inline-block;
+            padding: 15px 35px;
+            background: transparent;
+            color: var(--primary-cyan);
+            text-decoration: none;
+            border: 2px solid var(--primary-cyan);
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        /* Efecto hover para el botón secundario */
+        .btn-secondary:hover {
+            background: var(--primary-cyan);
+            color: var(--dark-bg);
+            box-shadow: 0 10px 30px rgba(0,255,255,0.3);
+        }
+
+        /* SECCIÓN HERO - Optimizado para todos los dispositivos */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center; /* Centra verticalmente el contenido */
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(255,0,255,0.1) 0%, transparent 70%);
+            padding: 40px 0; /* Añade padding para espacio en móviles */
+        }
+
+        /* Fondo de cuadrícula para la sección hero */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,0,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+            z-index: 0; /* Asegura que el fondo esté detrás del contenido */
+        }
+
+        /* Contenedor interno para el contenido del hero y la imagen */
+        .hero .container {
+            display: flex; /* Usa flexbox para alinear elementos */
+            flex-direction: row; /* Elementos en fila por defecto para desktop */
+            align-items: center;
+            justify-content: space-between; /* Espacio entre el texto y la imagen */
+            position: relative;
+            z-index: 2; /* Asegura que el contenido esté por encima del fondo */
+            flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+        }
+
+        /* Contenido del hero */
+        .hero-content {
+            flex: 1; /* Permite que el contenido ocupe el espacio disponible */
+            max-width: 50%; /* Ocupa la mitad del ancho disponible en desktop */
+            padding-right: 30px; /* Espacio entre el texto y la imagen */
+        }
+
+        /* Título de la sección hero */
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        /* Párrafo de la sección hero */
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        /* Imagen de la sección hero */
+        .hero-image {
+            width: 400px; /* Ancho fijo para la imagen en desktop */
+            height: 400px; /* Altura fija para la imagen en desktop */
+            flex-shrink: 0; /* Evita que la imagen se encoja demasiado */
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(255,0,255,0.4);
+        }
+
+        /* SECCIÓN DE PROBLEMAS (PAIN SECTION) */
+        .pain-section {
+            padding: 8rem 0;
+            background: var(--dark-secondary);
+            position: relative;
+        }
+
+        /* Fondo de gradiente para la sección de problemas */
+        .pain-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-secondary);
+        }
+
+        /* Contenido de la sección de problemas */
+        .pain-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Título de sección general */
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        /* Lista de problemas */
+        .pain-checklist {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Elemento individual de la lista de problemas */
+        .pain-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            border-left: 4px solid var(--primary-magenta);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Icono de verificación para los elementos de la lista de problemas */
+        .pain-item::before {
+            content: '✓';
+            color: var(--primary-magenta);
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            line-height: 1;
+            font-weight: bold;
+        }
+
+        /* Párrafo dentro del elemento de problema */
+        .pain-item p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            flex: 1;
+        }
+
+        /* Texto de transición entre secciones */
+        .transition-text {
+            text-align: center;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--primary-cyan);
+            margin-top: 4rem;
+        }
+
+        /* Imagen de la sección de problemas */
+        .pain-image {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .pain-image img {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(255,0,255,0.3);
+        }
+
+        /* SECCIÓN DE PROMESAS (PROMISE SECTION) */
+        .promise-section {
+            padding: 8rem 0;
+            background: radial-gradient(ellipse at bottom, rgba(0,255,255,0.1) 0%, transparent 70%);
+        }
+
+        /* Lista de promesas */
+        .promise-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Elemento individual de la promesa */
+        .promise-item {
+            padding: 3rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(0,255,255,0.2);
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+        }
+
+        /* Efecto hover para el elemento de promesa */
+        .promise-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 20px 40px rgba(0,255,255,0.2);
+        }
+
+        /* Título del elemento de promesa */
+        .promise-item h3 {
+            font-size: 1.5rem;
+            color: var(--primary-cyan);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        /* Párrafo del elemento de promesa */
+        .promise-item p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Texto de impacto */
+        .impact-text {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-top: 4rem;
+            color: var(--primary-cyan);
+        }
+
+        /* Imagen de la sección de promesas */
+        .promise-image {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .promise-image img {
+            max-width: 700px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,255,255,0.3);
+        }
+
+        /* SECCIÓN DE GUÍA (GUIDE SECTION) */
+        .guide-section {
+            padding: 8rem 0;
+            background: var(--dark-secondary);
+        }
+
+        /* Pasos de la guía */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 3rem;
+            margin-top: 5rem;
+            position: relative;
+        }
+
+        /* Línea de conexión entre los pasos */
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            z-index: 1;
+        }
+
+        /* Elemento individual del paso */
+        .step {
+            text-align: center;
+            position: relative;
+            flex: 1;
+            z-index: 2;
+        }
+
+        /* Número del paso */
+        .step-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--dark-bg);
+            border: 3px solid;
+            border-image: var(--gradient-primary) 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        /* Borde degradado para el número del paso */
+        .step-number::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        /* Fondo para el número del paso */
+        .step-number::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--dark-bg);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        /* Título del paso */
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        /* Párrafo del paso */
+        .step p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* SECCIÓN DE DEMOSTRACIÓN (DEMO SECTION) */
+        .demo-section {
+            padding: 8rem 0;
+            background: var(--dark-bg);
+        }
+
+        /* Subsecciones de la demostración */
+        .demo-subsections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 5rem;
+            margin-top: 5rem;
+        }
+
+        /* Subsección individual de la demostración */
+        .demo-subsection {
+            padding: 3rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 20px;
+            border: 1px solid rgba(255,0,255,0.2);
+            height: auto; /* Asegura que la altura se ajuste al contenido */
+            overflow: visible; /* Asegura que el contenido no se oculte */
+        }
+
+        /* Título de la subsección de demostración */
+        .demo-subsection h3 {
+            font-size: 1.8rem;
+            color: var(--primary-magenta);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Párrafo de la subsección de demostración */
+        .demo-subsection p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Caja de código */
+        .code-box {
+            background: var(--dark-tertiary);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            border: 1px solid var(--primary-cyan);
+        }
+
+        /* Preformato del texto del código */
+        .code-box pre {
+            color: var(--primary-cyan);
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+            /* Nuevas propiedades para manejar el desbordamiento de texto */
+            white-space: pre-wrap; /* Permite que el texto se envuelva */
+            word-wrap: break-word; /* Rompe palabras largas para evitar desbordamiento */
+        }
+
+        /* Botón de copiar */
+        .copy-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary-cyan);
+            color: var(--dark-bg);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Imagen de la sección de demostración */
+        .showcase-image {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .showcase-image img {
+            max-width: 800px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(255,0,255,0.2);
+        }
+
+        /* SECCIÓN DEL CLUB (CLUB SECTION) */
+        .club-section {
+            padding: 8rem 0;
+            background: radial-gradient(ellipse at center, rgba(255,0,255,0.15) 0%, transparent 70%);
+        }
+
+        /* Valores del club */
+        .club-value {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        /* Elemento individual del valor del club */
+        .value-item {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Icono del elemento de valor */
+        .value-item .icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        /* Texto del elemento de valor */
+        .value-item span {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Contenedor de llamada a la acción */
+        .cta-container {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        /* Botón principal de llamada a la acción */
+        .btn-cta-main {
+            font-size: 1.3rem;
+            padding: 25px 50px;
+            background: var(--gradient-primary);
+            color: var(--dark-bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 50px rgba(255,0,255,0.4);
+            display: inline-block;
+        }
+
+        /* Efecto hover para el botón principal de llamada a la acción */
+        .btn-cta-main:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(255,0,255,0.6);
+        }
+
+        /* Imagen de la sección del club */
+        .club-image {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .club-image img {
+            max-width: 700px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(255,0,255,0.4);
+        }
+
+        /* PIE DE PÁGINA (FOOTER) */
+        .footer {
+            padding: 4rem 0 2rem;
+            background: var(--dark-tertiary);
+            text-align: center;
+        }
+
+        /* Contenido del pie de página */
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* Logo del pie de página */
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Iconos sociales */
+        .social-icons {
+            display: flex;
+            gap: 2rem;
+        }
+
+        /* Enlaces de iconos sociales */
+        .social-icons a {
+            color: var(--primary-cyan);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        /* Efecto hover para los iconos sociales */
+        .social-icons a:hover {
+            color: var(--primary-magenta);
+            transform: translateY(-3px);
+        }
+
+        /* SVG de los iconos sociales */
+        .social-icons svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* Texto de copyright */
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* PLACEHOLDERS DE IMAGEN (No se usan con URLs reales, pero se mantienen los estilos) */
+        .image-placeholder {
+            background: var(--gradient-secondary);
+            border: 2px dashed var(--primary-cyan);
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            color: var(--primary-cyan);
+            font-weight: 600;
+            margin: 2rem 0;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .demo-subsections {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps {
+                flex-direction: column;
+                gap: 3rem;
+            }
+
+            .steps::before {
+                display: none; /* Oculta la línea de conexión en móviles */
+            }
+            
+            .promise-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .club-value {
+                grid-template-columns: 1fr;
+            }
+
+            /* Ajustes para la sección hero en móviles */
+            .hero {
+                min-height: auto; /* Permite que la altura se ajuste al contenido */
+                padding-top: 80px; /* Más padding en la parte superior para móviles */
+                padding-bottom: 80px; /* Más padding en la parte inferior para móviles */
+                flex-direction: column; /* Apila el contenido verticalmente */
+                text-align: center; /* Centra el texto */
+            }
+
+            .hero .container {
+                flex-direction: column; /* Apila el texto y la imagen en móviles */
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%; /* Ocupa todo el ancho en móviles */
+                padding-right: 0;
+                margin-bottom: 3rem; /* Espacio entre el texto y la imagen */
+            }
+
+            .hero-image {
+                width: 80%; /* Ajusta el ancho de la imagen para que no sea demasiado grande */
+                max-width: 300px; /* Limita el tamaño máximo de la imagen */
+                height: auto; /* Altura automática para mantener la proporción */
+                margin: 2rem auto; /* Centra la imagen */
+            }
+
+            .hero-image img {
+                border-radius: 20px !important;
+                height: auto !important;
+                object-fit: contain !important; /* Asegura que la imagen se ajuste */
+            }
+
+            /* Ajustes generales de texto y botones para móviles */
+            .hero h1 {
+                font-size: clamp(2rem, 8vw, 3.5rem); /* Ajusta el tamaño del título para móviles */
+            }
+
+            .hero p {
+                font-size: 1rem; /* Ajusta el tamaño del párrafo para móviles */
+            }
+
+            .btn-primary {
+                padding: 15px 30px; /* Reduce el padding del botón principal */
+                font-size: 1rem; /* Reduce el tamaño de fuente del botón principal */
+            }
+
+            .section-title {
+                font-size: clamp(1.8rem, 7vw, 3rem); /* Ajusta el tamaño de los títulos de sección */
+            }
+
+            .pain-item, .promise-item, .value-item {
+                padding: 1.5rem; /* Reduce el padding de los elementos de lista y subsecciones */
+            }
+
+            /* CORRECCIÓN PARA LA SECCIÓN DEMO EN MÓVILES */
+            .demo-subsection {
+                padding: 1.5rem; /* Ajusta el padding para dar más espacio al texto */
+                height: auto; /* Asegura que la altura se ajuste al contenido */
+                overflow: visible; /* Asegura que el contenido no se oculte */
+            }
+
+            .demo-subsection p {
+                font-size: 1rem; /* Ajusta el tamaño del texto en los elementos */
+                line-height: 1.6; /* Asegura una buena legibilidad */
+            }
+
+            .step-number {
+                width: 80px; /* Reduce el tamaño del círculo del paso */
+                height: 80px;
+                font-size: 2.5rem; /* Reduce el tamaño de la fuente del número de paso */
+            }
+
+            .step h3 {
+                font-size: 1.3rem; /* Reduce el tamaño del título del paso */
+            }
+
+            .impact-text {
+                font-size: 1.5rem; /* Ajusta el tamaño del texto de impacto */
+            }
+
+            .btn-cta-main {
+                padding: 20px 40px; /* Reduce el padding del CTA principal */
+                font-size: 1.1rem; /* Reduce el tamaño de fuente del CTA principal */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- BLOQUE 1: HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Tus manos crean belleza. ¿Quién crea tus oportunidades?</h1>
+                <p>En el mundo de la estética, cada chat es una cita potencial. Cada post, una puerta a nuevos clientes. Pero tu tiempo es para tu arte, no para la pantalla.</p>
+                <a href="https://chat.whatsapp.com/FUEfafvfs7qHcY6KAmdhwF" class="btn-primary">Únete al Club IA (Es Gratis)</a>
+            </div>
+            <!-- IMAGE_HERO_SECTION -->
+            <div class="hero-image">
+                <img src="https://i.postimg.cc/CKgDC6Lt/Whisk-c8a9db3a7a.jpg" alt="Botella cristalina futurista">
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOQUE 2: PAIN SECTION -->
+    <section class="pain-section">
+        <div class="container">
+            <div class="pain-content">
+                <h2 class="section-title fade-in">Tu día a día, ¿se parece a esto?</h2>
+                <div class="pain-checklist">
+                    <div class="pain-item fade-in">
+                        <p>Lees mensajes de clientes potenciales horas después... y ya es tarde.</p>
+                    </div>
+                    <div class="pain-item fade-in">
+                        <p>Sientes que tu competencia te adelanta en redes sociales.</p>
+                    </div>
+                    <div class="pain-item fade-in">
+                        <p>La idea de "crear contenido" te consume una energía que no tienes.</p>
+                    </div>
+                    <div class="pain-item fade-in">
+                        <p>Quieres crecer, pero te sientes esclava del teléfono y la agenda.</p>
+                    </div>
+                </div>
+                <p class="transition-text fade-in">Y si existiera una forma más inteligente...</p>
+            </div>
+        </div>
+        <!-- IMAGE_PAIN_SECTION -->
+        <div class="pain-image">
+            <img src="https://i.postimg.cc/VNbpxvjp/Whisk-d24ec33558.jpg" alt="Teléfonos con notificaciones">
+        </div>
+    </section>
+
+    <!-- BLOQUE 3: PROMISE SECTION -->
+    <section class="promise-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Imagina un negocio que trabaja para ti.</h2>
+            <div class="promise-list">
+                <div class="promise-item fade-in">
+                    <h3>Una agenda que se llena sola.</h3>
+                    <p>Clientes que agendan citas a las 3 AM mientras duermes.</p>
+                </div>
+                <div class="promise-item fade-in">
+                    <h3>Un perfil que inspira.</h3>
+                    <p>Contenido de alta calidad que te posiciona como líder, sin que tengas que crearlo desde cero.</p>
+                </div>
+                <div class="promise-item fade-in">
+                    <h3>Libertad real.</h3>
+                    <p>Menos tiempo gestionando, más tiempo perfeccionando tu arte y disfrutando de tu éxito.</p>
+                </div>
+                <div class="promise-item fade-in">
+                    <h3>Ingresos que crecen solos.</h3>
+                    <p>Estrategias automatizadas que convierten seguidores en clientes fieles que regresan una y otra vez.</p>
+                </div>
+            </div>
+            <p class="impact-text fade-in">Esto no es el futuro. Es la nueva forma de operar.</p>
+        </div>
+        <!-- IMAGE_PROMISE_SECTION -->
+        <div class="promise-image">
+            <img src="https://i.postimg.cc/KjYNyp6j/Whisk-aba39dedad.jpg" alt="Clínica futurista">
+        </div>
+    </section>
+
+    <!-- BLOQUE 4: GUIDE SECTION -->
+    <section class="guide-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Tu revolución empieza con 3 simples pasos.</h2>
+            <div class="steps">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>Únete al Club IA.</h3>
+                    <p>Accede al epicentro de la innovación en estética. Es gratis y siempre lo será.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">2</div>
+                    <h3>Usa los Recursos.</h3>
+                    <p>Descarga contenido, copia estrategias y aplica las herramientas que te damos cada día.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>Implementa y Crece.</h3>
+                    <p>Automatiza tu agenda con nuestro asistente, lanza campañas visuales impactantes y mira cómo tu negocio se transforma.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOQUE 5: DEMO SECTION -->
+    <section class="demo-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Creamos herramientas. Tú creas imperios.</h2>
+            <div class="demo-subsections">
+                <div class="demo-subsection fade-in">
+                    <h3>Tu recepcionista 24/7.</h3>
+                    <p>Presentamos a tu Asistente IA. Un asistente entrenado para convertir chats de WhatsApp en citas agendadas, resolver dudas y fidelizar a tus clientes.</p>
+                </div>
+                <div class="demo-subsection fade-in">
+                    <h3>El Contenido que Deseas, al Instante.</h3>
+                    <p>Sabemos que crear imágenes espectaculares es difícil. Por eso, te regalamos un prompt. Cópialo y pégalo en cualquier IA generadora de imágenes. Este es el nivel de calidad que fomentamos en el Club:</p>
+                    <div class="code-box">
+                        <button class="copy-btn" onclick="copyPrompt()">Copiar</button>
+                        <pre id="prompt-text">prompt: Cinematic product shot of a futuristic perfume bottle made of swirling iridescent crystal, resting on a pedestal of dark obsidian. The bottle emits a soft, magical magenta glow from within. Around it, delicate, glowing cyan light particles float in the air. Moody lighting, hyper-detailed, photorealistic, 8K.</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- IMAGE_SHOWCASE_SECTION -->
+        <div class="showcase-image">
+            <img src="https://i.postimg.cc/131qGYvF/3bde178f-38c4-438c-be46-7be4dee78f5b.png" alt="Tratamiento estético con efectos digitales">
+        </div>
+    </section>
+
+    <!-- BLOQUE 6: CLUB SECTION -->
+    <section id="club" class="club-section">
+        <div class="container">
+            <h2 class="section-title fade-in">No estás sola en esta revolución.</h2>
+            <div class="fade-in">
+                <p style="text-align: center; font-size: 1.2rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                    El Club IA es una comunidad exclusiva y gratuita de dueñas de estéticas que, como tú, están redefiniendo el éxito. Compartimos estrategias, celebramos triunfos y construimos el futuro juntas.
+                </p>
+            </div>
+            <div class="cta-container">
+                <a href="https://chat.whatsapp.com/FUEfafvfs7qHcY6KAmdhwF" class="btn-cta-main">Únete al Club IA Ahora</a>
+            </div>
+        </div>
+        <!-- IMAGE_CLUB_SECTION -->
+        <div class="club-image">
+            <img src="https://i.postimg.cc/NMX3hFwL/Whisk-ccceaf32d5.jpg" alt="Grupo de personas en una comunidad digital">
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <!-- Se actualiza el texto del logo en el footer -->
+            <div class="logo">Club IA para Estéticas</div>
+            <div class="social-icons">
+                <!-- Instagram Icon and Link -->
+                <a href="https://www.instagram.com/maru.ia.esteticas/" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <!-- TikTok Icon and Link -->
+                <a href="https://www.tiktok.com/@maru_ia_asist?is_from_webapp=1&sender_device=pc" aria-label="TikTok">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z"/>
+                    </svg>
+                </a>
+                <!-- YouTube Icon and Link -->
+                <a href="https://youtube.com/@maruasistente?si=XuCEbCFp-1hj-liE" aria-label="YouTube">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                </a>
+                <!-- X (Twitter) Icon and Link -->
+                <a href="https://x.com/Maru_ia_asist" aria-label="X (Twitter)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <!-- WhatsApp Icon and Link -->
+                <a href="https://chat.whatsapp.com/FUEfafvfs7qHcY6KAmdhwF" aria-label="WhatsApp">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.051 3.488"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="copyright">&copy; 2024 Club IA para Estéticas. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Mensaje temporal para copiar -->
+    <div id="copyMessage" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: rgba(0, 255, 255, 0.9); color: #0a0a0a; padding: 10px 20px; border-radius: 5px; opacity: 0; transition: opacity 0.5s ease-in-out; z-index: 1000;">
+        ¡Copiado!
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Script para la animación de fade-in al hacer scroll
+            const faders = document.querySelectorAll('.fade-in');
+
+            const appearOptions = {
+                threshold: 0.1, // El elemento debe estar 10% visible
+                rootMargin: "0px 0px -50px 0px" // Empieza a aparecer 50px antes de la parte inferior del viewport
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+
+            // Función para copiar el prompt al portapapeles y mostrar un mensaje temporal
+            window.copyPrompt = function() {
+                const promptText = document.getElementById('prompt-text').innerText;
+                const tempTextArea = document.createElement('textarea');
+                tempTextArea.value = promptText;
+                document.body.appendChild(tempTextArea);
+                tempTextArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempTextArea);
+
+                const copyMessage = document.getElementById('copyMessage');
+                copyMessage.style.opacity = '1';
+                setTimeout(() => {
+                    copyMessage.style.opacity = '0';
+                }, 2000); // El mensaje desaparece después de 2 segundos
+            };
+        });
+    </script>
+</body>
+</html>
